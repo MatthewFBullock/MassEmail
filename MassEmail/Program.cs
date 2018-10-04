@@ -9,6 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Net;
 using System.Net.Mail;
 using System.Timers;
+using System.Threading;
 
 
 namespace MassEmail
@@ -144,29 +145,11 @@ namespace MassEmail
             }
             catch (Exception E)
             {
-                //// Create a timer with a two second interval.
-                //System.Timers.Timer aTimer = new System.Timers.Timer(15000);
-                //// Hook up the Elapsed event for the timer. 
-                //aTimer.Elapsed += OnTimedEvent;
-                //aTimer.AutoReset = false;
-                //aTimer.Enabled = true;
-                //Console.WriteLine("The application started at {0:HH:mm:ss}", DateTime.Now);
-
-
-                DateTime _aTimer = DateTime.Now;
-                Timer.ReferenceTimer(ref _aTimer);
                 
-
-
-                //var future_datetime = DateTime.Now.AddMinutes(30);
-                //do
-                //{
-                //    var datetime_output = future_datetime - DateTime.Now;
-                //    Console.WriteLine(datetime_output);
-                //} while (DateTime.Now < future_datetime);
-                //Console.WriteLine(E.Message);
-                //Console.WriteLine("Press ENTER to continue...");
-                //Console.ReadLine();
+                Console.WriteLine("Killing program for 15 seconds");
+                Thread.Sleep(15000);
+                Console.WriteLine("\nLet's try this again");
+                
 
                 _rowCount = _rowCount - 1; // sets count back so we don't miss an alumnus!
             }            
