@@ -17,6 +17,7 @@ namespace MassEmail
     {
         static void Main(string[] args)
         {
+            //test code
             var CurrentDirectory = Environment.CurrentDirectory;
             //open the excel document
             //var excel_directory = CurrentDirectory + "\\Portland_Oregon_Alumni_List - Copy.xlsx";
