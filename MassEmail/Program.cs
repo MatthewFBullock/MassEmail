@@ -155,10 +155,7 @@ namespace MassEmail
 
                 DateTime _aTimer = DateTime.Now;
                 Timer.ReferenceTimer(ref _aTimer);
-                if (true)
-                {
-
-                }
+                
 
 
                 //var future_datetime = DateTime.Now.AddMinutes(30);

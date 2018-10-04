@@ -16,7 +16,7 @@ namespace MassEmail
             SetTimer();
 
             
-            Console.WriteLine("The application started at {0:HH:mm:ss}", DateTime.Now);
+            Console.WriteLine("Error thrown at {0:HH:mm:ss}", DateTime.Now);
             aTimer.Stop();
             aTimer.Dispose();
         }
@@ -36,7 +36,7 @@ namespace MassEmail
 
         public static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss}", e.SignalTime);
+            Console.WriteLine("Trying again at {0:HH:mm:ss}", e.SignalTime);
         }
     }
 }
