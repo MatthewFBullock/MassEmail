@@ -17,10 +17,11 @@ namespace MassEmail
     {
         static void Main(string[] args)
         {
+            var CurrentDirectory = Environment.CurrentDirectory;
             //open the excel document
-            //var excel_directory = @"C:\Users\matth\Google Drive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Portland_Oregon_Alumni_List - Copy.xlsx";
-            //var excel_directory = @"C:\Users\matth\Google Drive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Portland_Oregon_Alumni_List.xlsx";
-            var excel_directory = @"C:\Users\matth\Google Drive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Test.xlsx";
+            //var excel_directory = CurrentDirectory + "\\Portland_Oregon_Alumni_List - Copy.xlsx";
+            //var excel_directory = CurrentDirectory + "\\Portland_Oregon_Alumni_List.xlsx";
+            var excel_directory = CurrentDirectory + "\\Test.xlsx";
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(excel_directory);
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
