@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Net;
 using System.Net.Mail;
+using System.Timers;
 
 
 namespace MassEmail
@@ -17,8 +18,9 @@ namespace MassEmail
         static void Main(string[] args)
         {
             //open the excel document
-            var excel_directory = @"C:\Users\matth\OneDrive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Portland_Oregon_Alumni_List.xlsx";
-            //var excel_directory = @"C:\Users\matth\OneDrive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Test.xlsx";
+            //var excel_directory = @"C:\Users\matth\Google Drive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Portland_Oregon_Alumni_List - Copy.xlsx";
+            //var excel_directory = @"C:\Users\matth\Google Drive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Portland_Oregon_Alumni_List.xlsx";
+            var excel_directory = @"C:\Users\matth\Google Drive\Alumni Chapter\Program for Texting Alumni\MassEmail\MassEmail\bin\Debug\Test.xlsx";
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(excel_directory);
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
@@ -49,9 +51,9 @@ namespace MassEmail
                     }
                     //if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
                     //    Member.Add("null");
-                    
-                    
-                    
+
+
+
                 }
                 if (Member[7].Equals("null"))
                 {
@@ -63,7 +65,7 @@ namespace MassEmail
                     Member.Clear();
                     continue;
                 }
-                SendMail(Member[1], Member[3]);
+                SendMail(Member[1], Member[3], ref rowCount);
                 Member.Clear();
             }
 
@@ -93,7 +95,7 @@ namespace MassEmail
             Console.ReadLine();
         }
 
-        private static void SendMail(string email_address, string outbound_name)
+        private static void SendMail(string email_address, string outbound_name, ref int _rowCount)
         {
             var fromAddress = new MailAddress("matthew.bullock52@gmail.com", "Matthew Bullock");
             var toAddress = new MailAddress(email_address, outbound_name);
@@ -101,12 +103,14 @@ namespace MassEmail
             //declares attachment
             System.Net.Mail.Attachment attachment;
             //adds the attachment to memory
-            attachment = new System.Net.Mail.Attachment(@"C:\Users\matth\OneDrive\Alumni Chapter\Meetings\PDFs\111417 Meeting Minutes.pdf");
-            const string subject = "Delta Chi Portland Alumni Chapter - TopGolf Function Registration";
-            string body = "Happy Saturdays " + outbound_name + ",\n\n" +
-                "I hope your Thanksgiving holidays treated you well! If you are interested in attending our first function, which was voted on during our first meeting, registration can be done so here: https://goo.gl/forms/LbSH08RiqN9DfOU53 \n\n" + 
+            attachment = new System.Net.Mail.Attachment(@"C:\Users\matth\Google Drive\Alumni Chapter\Meetings\PDFs\031318 Meeting Minutes.pdf");
+            const string subject = "Delta Chi Portland Alumni Chapter - September Monthly Meeting";
+            string body = "Brother " + outbound_name + ",\n\n" +
+                "We are going to be having our monthly chapter meeting this next Tuesday at 6pm. I look forward to catching up with everyone and sharing the cool stuff we learned at convention, along with resources and direction that has been advised to our chapter since we all last met.\n\n" +
                 
-                "If you have any questions, feel free to reach out to me. Also, be sure to join our Facebook group page if you haven't done so already! https://www.facebook.com/groups/150651385533420/ \n\n" + 
+                "Location: 1411 SW Morrison St. Suite 200\n\n" +  
+
+                "As always, be sure to join our Facebook group page if you haven't done so already! https://www.facebook.com/groups/150651385533420/ \n\n" + 
                 "ItB,\n\n" +
                 "Matt Bullock\n" +
                 "(303) 549-9597\n" +
@@ -138,17 +142,35 @@ namespace MassEmail
             }
             catch (Exception E)
             {
-                var future_datetime = DateTime.Now.AddMinutes(30);
-                do
+                //// Create a timer with a two second interval.
+                //System.Timers.Timer aTimer = new System.Timers.Timer(15000);
+                //// Hook up the Elapsed event for the timer. 
+                //aTimer.Elapsed += OnTimedEvent;
+                //aTimer.AutoReset = false;
+                //aTimer.Enabled = true;
+                //Console.WriteLine("The application started at {0:HH:mm:ss}", DateTime.Now);
+
+
+                DateTime _aTimer = DateTime.Now;
+                Timer.ReferenceTimer(ref _aTimer);
+                if (true)
                 {
-                    var datetime_output = future_datetime - DateTime.Now;
-                    Console.WriteLine(datetime_output);
-                } while (DateTime.Now < future_datetime);
+
+                }
+
+
+                //var future_datetime = DateTime.Now.AddMinutes(30);
+                //do
+                //{
+                //    var datetime_output = future_datetime - DateTime.Now;
+                //    Console.WriteLine(datetime_output);
+                //} while (DateTime.Now < future_datetime);
                 //Console.WriteLine(E.Message);
                 //Console.WriteLine("Press ENTER to continue...");
                 //Console.ReadLine();
-            }
-            
+
+                _rowCount = _rowCount - 1; // sets count back so we don't miss an alumnus!
+            }            
         }
     }
 }
