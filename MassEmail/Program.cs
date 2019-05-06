@@ -102,7 +102,7 @@ namespace MassEmail
         {
             var fromAddress = new MailAddress("matthew.bullock52@gmail.com", "Matthew Bullock");
             var toAddress = new MailAddress(email_address, outbound_name);
-            const string fromPassword = "Matt!0614";
+            const string fromPassword = ""; //leaving this null will break the program, however I don't want my password on github. See if we can encrypt it.
             //declares attachment
             System.Net.Mail.Attachment attachment;
             //adds the attachment to memory
